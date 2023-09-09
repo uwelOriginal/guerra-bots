@@ -34,14 +34,18 @@ string monthToNum(string mes, string *meses)
 
 string removeDots(string hora)
 {
-	// eliminar ":" de hora, y regresar	string con ese formato
+	string resultado = "";
+	// TO-DO eliminar ":" de hora, y regresar	string con ese formato
+
+	return addZeros(stoi(resultado), 6);
 }
 
-//	Ejemplos para leer lineas y luego escribirlas en otros archivos, con C/C++
+void sortVector(vector<vector<string>> *datos){
+	// TO-DO ordenar vector datos, usando datos[i][0] como número a ordenar
+}
 
 int main(int argc, char* argv[])
 {
-	//	C++
 	string sline;
 	int index;
 
@@ -54,30 +58,29 @@ int main(int argc, char* argv[])
 
 	//	Verifica que los archivos se hayan abierto correctamente
 	if (inFile.is_open() && outFile.is_open() )
-	{	//	Lee liniea a linea
+	{	//	Lee linea a linea
 		while ( getline(inFile, sline) )
 		{	
-			outFile << sline << endl;
 
 			string numerote;
 
-			// Se obtiene el mes:
+			// Obtiene mes:
 			string line = sline;
 			index = line.find(" ");
 			string mes = line.substr(0, index);
 			numerote += monthToNum(mes, meses);
 
-			//	Obtine dia
+			//	Obtiene dia
 			line = sline.substr(index+1);
 			index = line.find(" ");
 			string dia = line.substr(0, index);
 			numerote += addZeros(stoi(dia), 2);  
 
-			//	Obtine hora 
-			// line = sline.substr(index+1);
-			// index = line.find(" ");
-			// string hora = line.substr(0, index);
-			// numerote += removeDots(hora);
+			//	Obtiene hora 
+			line = sline.substr(index+1);
+			index = line.find(" ");
+			string hora = line.substr(0, index);
+			numerote += removeDots(hora);
 
 			vector<string> appendedElem = {numerote, line};
 
@@ -85,9 +88,19 @@ int main(int argc, char* argv[])
 		}
 	}
 
+	// ordenar vector datos
+	sortVector(datos);
+
+	// guardar en archivo de salida vector ordenado
+	for(int i=0; i<datos.size(); i++){
+		outFile << datos[i][1] << endl;
+	}
+
 	inFile.close();
 	outFile.close();
 
+	/*
+	// Código para revisar numerote: 
 	for(int i = 0; i < datos.size(); i++)
     {
 		string numerote = datos[i][0];
@@ -95,4 +108,5 @@ int main(int argc, char* argv[])
 		cout << numerote;
         cout << endl;
     }
+	*/
 }
