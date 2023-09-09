@@ -32,9 +32,9 @@ string monthToNum(string mes, string *meses)
 	
 }
 
-void removeDots(string hora)
+string removeDots(string hora)
 {
-	
+	// eliminar ":" de hora, y regresar	string con ese formato
 }
 
 //	Ejemplos para leer lineas y luego escribirlas en otros archivos, con C/C++
